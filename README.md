@@ -86,17 +86,13 @@ DATABASE_URL="postgresql://discord_user:your_password@localhost:5432/discord_arc
 cd src # make sure you're in the src directory
 
 # importing a discord account:
-py main.py --token "" # set to a discord token
+py scraper/sync.py --token "" # set to a discord token
 
 # running the website
-py api.py
+py main.py
 ```
 
-there is no main.py yet, and the website is only an api.
+the website is only an api.
 
 i will implement a proper front end so you can browse different users and
 search.
-
-i will also add a import token feature that runs the script automatically in the background so you dont have to open up a cli to run that, it'll just be on the website.
-
-of course this means i will also have to add an authentication system, user database for the site, administrator system, invite codes, and more.

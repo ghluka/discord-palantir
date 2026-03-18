@@ -6,13 +6,13 @@ from time import sleep
 import requests
 from websocket import WebSocketApp
 
-from config import BASE_URL, DISCORD_TOKEN
+from config import BASE_URL
 
 
 class DiscordClient:
 
-    def __init__(self):
-        self.headers = {"Authorization": DISCORD_TOKEN}
+    def __init__(self, token: str):
+        self.headers = {"Authorization": token}
 
     def _get(self, endpoint, params=None):
         while True:

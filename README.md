@@ -5,9 +5,7 @@
 > Using this software to automate Discord accounts violates Discord’s Terms of Service.
 > I am not responsible for any misuse, damages, or account bans resulting from this software.
 
-discord operational security tool
-
-currently just a proof of concept
+A Discord osint tool. Dumps all data from a token's guilds to track users in a database.
 
 ## 📜 requirements:
 - [python](https://python.org) (i ran on v3.13.7)
@@ -77,6 +75,16 @@ DATABASE_URL=""
 ```env
 DATABASE_URL="postgresql://discord_user:your_password@localhost:5432/discord_archive"
 ```
+- optional media cache settings:
+```env
+MEDIA_CACHE_DIR="media_cache"
+MEDIA_CACHE_IMAGE_SIZE="256"
+MEDIA_CACHE_WEBP_QUALITY="70"
+DISCORD_RETRY_ATTEMPTS="8"
+DISCORD_RETRY_BASE_DELAY="2"
+DISCORD_RETRY_MAX_DELAY="60"
+```
+profile pictures and guild icons are cached as small static `.webp` files, even when the original Discord asset is animated.
 
 </details>
 
@@ -87,12 +95,10 @@ cd src # make sure you're in the src directory
 
 # importing a discord account:
 py scraper/sync.py --token "" # set to a discord token
+py scraper/sync.py --token "" --workers 4 # sync multiple guilds at once
 
 # running the website
 py main.py
 ```
 
-the website is only an api.
-
-i will implement a proper front end so you can browse different users and
-search.
+the website includes an api and a browser UI for searching users and guilds.

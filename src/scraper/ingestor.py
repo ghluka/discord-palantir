@@ -15,6 +15,8 @@ class Ingestor:
         channels = self.client.get_channels(guild_id)
 
         for channel in channels:
+            Models.upsert_channel(self.db, guild_id, channel)
+
             if channel["type"] != 0:
                 continue
 

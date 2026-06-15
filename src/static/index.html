@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discord Palantir</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Discord Palantir</h1>
+          <p id="summary">Loading archive summary</p>
+        </div>
+        <div class="mode-tabs" role="tablist" aria-label="Search mode">
+          <button class="tab active" id="userMode" type="button">Users</button>
+          <button class="tab" id="guildMode" type="button">Guilds</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="search-pane">
+          <form id="searchForm" class="search-box">
+            <input
+              id="searchInput"
+              name="q"
+              type="search"
+              autocomplete="off"
+              placeholder="Search username or user ID"
+            />
+            <button class="icon-button" type="submit" title="Search">Search</button>
+          </form>
+          <div id="results" class="result-list" aria-live="polite"></div>
+        </aside>
+
+        <section class="detail-pane">
+          <div id="emptyState" class="empty-state">
+            <h2>Select a user or guild</h2>
+            <p>Search the archive to inspect messages, memberships, channels, and profile history.</p>
+          </div>
+
+          <div id="userView" class="entity-view hidden">
+            <div class="entity-header">
+              <img id="userAvatar" class="avatar large" alt="" />
+              <div>
+                <h2 id="userName"></h2>
+                <p id="userMeta"></p>
+              </div>
+            </div>
+            <div class="split-grid">
+              <section>
+                <div class="section-head">
+                  <h3>Servers</h3>
+                </div>
+                <div id="userGuilds" class="compact-list"></div>
+              </section>
+              <section>
+                <div class="section-head">
+                  <h3>Profile History</h3>
+                </div>
+                <div id="userHistory" class="timeline"></div>
+              </section>
+            </div>
+          </div>
+
+          <div id="guildView" class="entity-view hidden">
+            <div class="entity-header">
+              <img id="guildIcon" class="avatar large" alt="" />
+              <div>
+                <h2 id="guildName"></h2>
+                <p id="guildMeta"></p>
+              </div>
+            </div>
+            <div class="split-grid">
+              <section>
+                <div class="section-head">
+                  <h3>Channels</h3>
+                </div>
+                <div id="guildChannels" class="compact-list"></div>
+              </section>
+              <section>
+                <div class="section-head">
+                  <h3>Guild History</h3>
+                </div>
+                <div id="guildHistory" class="timeline"></div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="log-pane">
+          <div class="section-head">
+            <div>
+              <h3 id="messageTitle">Messages</h3>
+              <p id="messageSubtitle">No selection</p>
+            </div>
+            <span id="messageStatus" class="pill">Idle</span>
+          </div>
+          <div id="messages" class="message-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
